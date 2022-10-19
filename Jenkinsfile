@@ -9,12 +9,12 @@ pipeline {
 
       }
       steps {
-        sh '''git clone https://github.com/notfrannco/hello-world.git
-pwd
-cd hello-world
-pwd
-mvn clean package
-ls -l'''
+        sh '''git clone https://github.com/notfrannco/hello-world.git &&
+pwd &&
+cd hello-world &&
+pwd &&
+mvn clean package &&
+ls -l &&'''
         stash(name: 'build-test-artifacts', includes: 'target/*.war')
       }
     }
