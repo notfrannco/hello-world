@@ -9,6 +9,8 @@ pipeline {
 
       }
       steps {
+        sh '''git clone https://github.com/notfrannco/hello-world.git
+cd hello-world'''
         sh 'mvn -Dmaven.test.failure.ignore clean package'
         stash(name: 'build-test-artifacts', includes: 'target/*.jar')
       }
