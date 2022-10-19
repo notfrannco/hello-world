@@ -12,7 +12,7 @@ pipeline {
         sh '''git clone https://github.com/notfrannco/hello-world.git
 cd hello-world'''
         sh 'mvn -Dmaven.test.failure.ignore clean package'
-        stash(name: 'build-test-artifacts', includes: 'target/*.jar')
+        stash(name: 'build-test-artifacts', includes: 'target/*.war')
       }
     }
 
@@ -26,7 +26,7 @@ cd hello-world'''
       steps {
         unstash 'build-test-artifacts'
         junit '**/target/surefire-reports/TEST-*.xml'
-        archiveArtifacts(onlyIfSuccessful: true, artifacts: 'target/*.jar')
+        archiveArtifacts(onlyIfSuccessful: true, artifacts: 'target/*.war')
       }
     }
 
